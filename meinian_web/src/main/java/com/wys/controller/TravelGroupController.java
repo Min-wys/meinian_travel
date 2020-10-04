@@ -27,18 +27,38 @@ public class TravelGroupController {
     @Reference
     private TravelGroupService travelgroupService;
 
-    @RequestMapping("/edit")
-    public Result edit(@RequestBody TravelGroup travelGroup,Integer[] travelItemIds) {
-        travelgroupService.edit(travelGroup,travelItemIds);
-
-        return new Result(true,MessageConstant.EDIT_TRAVELGROUP_SUCCESS);
+    /**
+     * @Description: 查找所有跟团游数据
+     * @Author: WangYongShuai
+     * @Date: 2020/10/4 15:45
+     * @return: java.util.List<com.wys.pojo.TravelGroup>
+     **/
+    @RequestMapping("/findAll")
+    public List<TravelGroup> findAll() {
+        List<TravelGroup> list = travelgroupService.findAll();
+        return list;
     }
 
     /**
+     * @param travelGroup:
+     * @param travelItemIds:
+     * @Description: 更新跟团游
+     * @Author: WangYongShuai
+     * @Date: 2020/10/4 15:43
+     * @return: com.wys.entity.Result
+     **/
+    @RequestMapping("/edit")
+    public Result edit(@RequestBody TravelGroup travelGroup, Integer[] travelItemIds) {
+        travelgroupService.edit(travelGroup, travelItemIds);
+
+        return new Result(true, MessageConstant.EDIT_TRAVELGROUP_SUCCESS);
+    }
+
+    /**
+     * @param id:
      * @Description: 通过跟团游Id查找对象的自由行Id
      * @Author: WangYongShuai
      * @Date: 2020/10/3 23:12
-     * @param id:
      * @return: java.util.List<java.lang.Integer>
      **/
     @RequestMapping("/findTravelItemIdByTravelgroupId")

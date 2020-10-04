@@ -69,4 +69,8 @@
         </set>
         where id = #{id}
     </update>
+
+    <select id="findAll" resultType="travelGroup">
+        select id,code, `name`, helpCode, sex, remark, attention from t_travelgroup
+    </select>
 </mapper>

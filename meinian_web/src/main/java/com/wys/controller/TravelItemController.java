@@ -94,9 +94,9 @@ public class TravelItemController {
     }
 
     /**
+     * @Author: WangYongShuai
      * @param travelItem:
      * @Description: 新增自由行
-     * @Author: WangYongShuai
      * @Date: 2020/10/2 20:03
      * @return: com.wys.entity.Result
      **/

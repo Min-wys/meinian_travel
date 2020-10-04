@@ -32,4 +32,6 @@ public interface TravelGroupDao {
     List<Integer> findTravelItemIdByTravelgroupId(Integer id);
 
     void edit(TravelGroup travelGroup);
+
+    List<TravelGroup> findAll();
 }
