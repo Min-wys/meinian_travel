@@ -1,8 +1,12 @@
 package com.wys.service.Impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.wys.constant.RedisConstant;
 import com.wys.dao.SetmealDao;
+import com.wys.entity.PageResult;
+import com.wys.entity.QueryPageBean;
 import com.wys.pojo.Setmeal;
 import com.wys.service.SetmealService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +42,16 @@ public class SetmealServiceImpl implements SetmealService {
             setSetmealAndTravelGroup(setmeal.getId(), travelgroupIds);
         }
         //将图片保存到redis
-        jedisPool.getResource().sadd(RedisConstant.SETMEAL_PIC_DB_RESOURCES,setmeal.getImg());
+        jedisPool.getResource().sadd(RedisConstant.SETMEAL_PIC_DB_RESOURCES, setmeal.getImg());
     }
+
+    @Override
+    public PageResult findPage(QueryPageBean queryPageBean) {
+        PageHelper.startPage(queryPageBean.getCurrentPage(),queryPageBean.getPageSize());
+        Page<Setmeal> page = setmealDao.findPage(queryPageBean.getQueryString());
+        return new PageResult(page.getTotal(),page.getResult());
+    }
+
 
     public void setSetmealAndTravelGroup(Integer setmealId, Integer[] travelgroupIds) {
 

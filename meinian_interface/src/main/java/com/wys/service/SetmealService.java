@@ -1,5 +1,8 @@
 package com.wys.service;
 
+import com.github.pagehelper.Page;
+import com.wys.entity.PageResult;
+import com.wys.entity.QueryPageBean;
 import com.wys.pojo.Setmeal;
 
 /**
@@ -12,4 +15,7 @@ import com.wys.pojo.Setmeal;
  */
 public interface SetmealService {
     void add(Setmeal setmeal, Integer[] travelgroupIds);
+
+
+    PageResult findPage(QueryPageBean queryPageBean);
 }

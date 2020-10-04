@@ -1,8 +1,11 @@
 package com.wys.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.github.pagehelper.Page;
 import com.wys.constant.MessageConstant;
 import com.wys.constant.RedisConstant;
+import com.wys.entity.PageResult;
+import com.wys.entity.QueryPageBean;
 import com.wys.entity.Result;
 import com.wys.pojo.Setmeal;
 import com.wys.service.SetmealService;
@@ -66,6 +69,14 @@ public class SetmealController {
         }
     }
 
+    /**
+     * @Description: 新增套餐游
+     * @Author: WangYongShuai
+     * @Date: 2020/10/4 20:47
+     * @param setmeal:
+     * @param travelgroupIds:
+     * @return: com.wys.entity.Result
+     **/
     @RequestMapping("/add")
     public Result add(@RequestBody Setmeal setmeal, Integer[] travelgroupIds) {
         try {
@@ -74,6 +85,13 @@ public class SetmealController {
         } catch (Exception e) {
             return new Result(false, MessageConstant.ADD_SETMEAL_FAIL);
         }
+    }
+
+    @RequestMapping("/findPage")
+    public PageResult findPage(@RequestBody QueryPageBean queryPageBean){
+        PageResult pageResult = setmealService.findPage(queryPageBean);
+
+        return pageResult;
     }
 
 

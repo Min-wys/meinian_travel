@@ -15,4 +15,13 @@
         insert into t_setmeal_travelgroup(setmeal_id,travelgroup_id) values(#{setmealId},#{travelgroupId})
     </insert>
 
+    <select id="findPage" parameterType="string" resultType="setmeal">
+        select id,`name`,  code,  helpCode,  sex,  age,  price,  remark,  attention, img from t_setmeal
+        <where>
+            <if test="value != null and value.length > 0">
+                code = #{value } or helpCode = #{value } or `name` like concat('%',#{value},'%')
+            </if>
+        </where>
+    </select>
+
 </mapper>
