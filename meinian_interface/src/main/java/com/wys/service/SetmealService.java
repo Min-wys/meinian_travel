@@ -5,6 +5,8 @@ import com.wys.entity.PageResult;
 import com.wys.entity.QueryPageBean;
 import com.wys.pojo.Setmeal;
 
+import java.util.List;
+
 /**
  * @ProjectName: meinian_travel
  * @Package: com.wys.service
@@ -18,4 +20,8 @@ public interface SetmealService {
 
 
     PageResult findPage(QueryPageBean queryPageBean);
+
+    List<Setmeal> getSetmeal();
+
+    Setmeal findById(Integer id);
 }

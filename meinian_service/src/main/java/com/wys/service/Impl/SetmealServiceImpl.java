@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import redis.clients.jedis.JedisPool;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -47,9 +48,21 @@ public class SetmealServiceImpl implements SetmealService {
 
     @Override
     public PageResult findPage(QueryPageBean queryPageBean) {
-        PageHelper.startPage(queryPageBean.getCurrentPage(),queryPageBean.getPageSize());
+        PageHelper.startPage(queryPageBean.getCurrentPage(), queryPageBean.getPageSize());
         Page<Setmeal> page = setmealDao.findPage(queryPageBean.getQueryString());
-        return new PageResult(page.getTotal(),page.getResult());
+        return new PageResult(page.getTotal(), page.getResult());
+    }
+
+    @Override
+    public List<Setmeal> getSetmeal() {
+        List<Setmeal> list = setmealDao.getSetmeal();
+        return list;
+    }
+
+    @Override
+    public Setmeal findById(Integer id) {
+        Setmeal setmeal = setmealDao.findById(id);
+        return setmeal;
     }
 
 

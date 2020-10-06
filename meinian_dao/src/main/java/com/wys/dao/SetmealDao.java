@@ -3,6 +3,7 @@ package com.wys.dao;
 import com.github.pagehelper.Page;
 import com.wys.pojo.Setmeal;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,4 +20,8 @@ public interface SetmealDao {
     void setSetmealAndTravelGroup(Map<String, Integer> map);
 
     Page<Setmeal> findPage(String queryString);
+
+    List<Setmeal> getSetmeal();
+
+    Setmeal findById(Integer id);
 }
