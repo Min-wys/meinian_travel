@@ -7,6 +7,7 @@ import com.wys.entity.QueryPageBean;
 import com.wys.entity.Result;
 import com.wys.pojo.TravelItem;
 import com.wys.service.TravelItemService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +37,7 @@ public class TravelItemController {
      * @return: java.util.List<com.wys.pojo.TravelItem>
      **/
     @RequestMapping("/findAll")
+    @PreAuthorize("hasAuthority('TRAVELITEM_QUERY')")//权限校验
     public List<TravelItem> findAll() {
         return travelItemService.findAll();
     }
@@ -48,6 +50,7 @@ public class TravelItemController {
      * @return: com.wys.entity.Result
      **/
     @RequestMapping("/edit")
+    @PreAuthorize("hasAuthority('TRAVELITEM_EDIT')")//权限校验
     public Result edit(@RequestBody TravelItem travelItem) {
         travelItemService.edit(travelItem);
         return new Result(true, MessageConstant.EDIT_TRAVELITEM_SUCCESS);
@@ -61,6 +64,7 @@ public class TravelItemController {
      * @return: com.wys.entity.Result
      **/
     @RequestMapping("/findById")
+    @PreAuthorize("hasAuthority('TRAVELITEM_QUERY')")//权限校验
     public Result findById(Integer id) {
         TravelItem travelItem = travelItemService.findById(id);
         return new Result(true, MessageConstant.QUERY_TRAVELITEM_SUCCESS, travelItem);
@@ -74,6 +78,7 @@ public class TravelItemController {
      * @return: com.wys.entity.Result
      **/
     @RequestMapping("/delete")
+    @PreAuthorize("hasAuthority('TRAVELITEM_DELETE123')")//权限校验，使用TRAVELITEM_DELETE123测试
     public Result deleteById(Integer id) {
         travelItemService.deleteById(id);
 
@@ -88,6 +93,7 @@ public class TravelItemController {
      * @return: com.wys.entity.PageResult
      **/
     @RequestMapping("/findPage")
+    @PreAuthorize("hasAuthority('TRAVELITEM_QUERY')")//权限校验
     public PageResult findPage(@RequestBody QueryPageBean queryPageBean) {
         PageResult pageResult = travelItemService.findPage(queryPageBean);
         return pageResult;
@@ -101,6 +107,7 @@ public class TravelItemController {
      * @return: com.wys.entity.Result
      **/
     @RequestMapping("/add")
+    @PreAuthorize("hasAuthority('TRAVELITEM_ADD')")//权限校验
     public Result add(@RequestBody TravelItem travelItem) {
         try {
             travelItemService.add(travelItem);
