@@ -22,4 +22,6 @@ public interface OrderSettingDao {
     void editNumberByDate(OrderSetting orderSetting);
 
     Long findCountByOrderDate(Date orderDate);
+
+    OrderSetting findOrderSetting(Date date);
 }

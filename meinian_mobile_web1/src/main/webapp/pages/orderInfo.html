@@ -137,6 +137,20 @@
             },
             //提交预约
             submitOrder() {
+                var idCard = this.orderInfo.idCard;
+                if (!checkIdCard(idCard)) {
+                    this.$message.error('请输入正确的身份证号码')
+                    return false;
+                }
+                axios.post("/order/submit.do", this.orderInfo).then((res) => {
+                    if (res.data.flag) {
+                        this.$message({
+                            message: res.data.message,
+                            type:'success'
+                        })
+                        window.location.href="orderSuccess.html?orderId=" + res.data.data.id;
+                    }
+                })
             }
         },
         mounted() {
