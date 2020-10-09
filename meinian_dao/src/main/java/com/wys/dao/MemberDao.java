@@ -15,4 +15,13 @@ public interface MemberDao {
 
     void add(Member member);
 
+    Integer CountMemberByMonth(String lastDayOfMonth);
+
+    int getTodayNewMember(String today);
+
+    int getTotalMember();
+
+    int getThisWeekNewMember(String weekMonday);
+
+    int getThisMonthNewMember(String monthFirst);
 }

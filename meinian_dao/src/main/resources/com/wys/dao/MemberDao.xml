@@ -22,5 +22,23 @@
         #{regTime},#{password},#{email},#{birthday},#{remark})
     </insert>
 
+    <select id="CountMemberByMonth" parameterType="string" resultType="int">
+        select count(id) from t_member where regTime &lt; #{lastDayOfMonth}
+    </select>
 
+    <select id="getTodayNewMember" parameterType="string" resultType="int">
+        select count(id) from t_member where regTime = #{today}
+    </select>
+
+    <select id="getTotalMember" resultType="int">
+        select count(id) from t_member
+    </select>
+
+    <select id="getThisWeekNewMember" parameterType="string" resultType="int">
+        select count(id) from t_member where regTime &gt; #{weekMonday}
+    </select>
+
+    <select id="getThisMonthNewMember" parameterType="string" resultType="int">
+        select count(id) from t_member where regTime &gt; #{monthFirst}
+    </select>
 </mapper>

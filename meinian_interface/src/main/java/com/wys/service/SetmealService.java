@@ -6,6 +6,7 @@ import com.wys.entity.QueryPageBean;
 import com.wys.pojo.Setmeal;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ProjectName: meinian_travel
@@ -24,4 +25,6 @@ public interface SetmealService {
     List<Setmeal> getSetmeal();
 
     Setmeal findById(Integer id);
+
+    List<Map<String, Object>> findSetmealCount();
 }

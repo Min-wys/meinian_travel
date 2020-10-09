@@ -65,6 +65,14 @@ public class SetmealServiceImpl implements SetmealService {
         return setmeal;
     }
 
+    @Override
+    public List<Map<String, Object>> findSetmealCount() {
+
+        List<Map<String, Object>> list = setmealDao.findSetmealCount();
+
+        return list;
+    }
+
 
     public void setSetmealAndTravelGroup(Integer setmealId, Integer[] travelgroupIds) {
 

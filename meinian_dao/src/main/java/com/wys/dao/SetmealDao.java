@@ -24,4 +24,6 @@ public interface SetmealDao {
     List<Setmeal> getSetmeal();
 
     Setmeal findById(Integer id);
+
+    List<Map<String, Object>> findSetmealCount();
 }

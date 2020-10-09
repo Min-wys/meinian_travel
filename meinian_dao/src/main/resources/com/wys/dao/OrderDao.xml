@@ -43,5 +43,34 @@
         where o.member_id=m.id and o.setmeal_id=s.id and o.id=#{id}
     </select>
 
+    <select id="getTodayOrderNumber" parameterType="string" resultType="int">
+        select count(id) from t_order where orderDate = #{today}
+    </select>
+
+    <select id="getTodayVisitsNumber" parameterType="string" resultType="int">
+        select count(id) from t_order where orderDate = #{today} and orderStatus = '已出游'
+    </select>
+
+    <select id="getThisWeekOrderNumber" parameterType="map" resultType="int">
+        select count(id) from t_order where orderDate between #{weekMonday} and #{weekSunday}
+    </select>
+
+    <select id="getThisWeekVisitsNumber" parameterType="map" resultType="int">
+        select count(id) from t_order where orderDate between #{weekMonday} and #{weekSunday} and orderStatus = '已出游'
+    </select>
+
+    <select id="getThisMonthOrderNumber" parameterType="map" resultType="int">
+        select count(id) from t_order where orderDate between #{monthFirst} and #{monthLast}
+    </select>
+
+    <select id="getThisMonthVisitsNumber" parameterType="map" resultType="int">
+        select count(id) from t_order where orderDate between #{monthFirst} and #{monthLast} and orderStatus = '已出游'
+    </select>
+
+    <select id="getHotSetmeal" resultType="map">
+        select s.name name,count(o.id) setmeal_count,count(o.id)/(select count(id) from t_order) proportion
+        from t_order o,t_setmeal s
+        where o.setmeal_id = s.id group by s.name order by count(o.id) desc limit 0,4
+    </select>
 
 </mapper>
